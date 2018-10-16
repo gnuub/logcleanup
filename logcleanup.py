@@ -1,23 +1,29 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 """
-Program to remove files that match stem and extension.
+Program to remove files that match regex in given directory.
 """
 
 import re
-from os import listdir
-
+from os import listdir, remove
+from sys import platform
 
 def main():
-    #dirobject = r'C:\Users\sookie\Projects\Samples\logs'
-    diroject = r'C:\Users\ssaypras\projects\Sample'
+    dirobject = r'C:\Users\ssaypras\projects\Sample'
 
     pattern = r'delete'
     regex = re.compile(pattern, re.IGNORECASE)
 
-    for fnobject in listdir(diroject):
+    for fnobject in listdir(dirobject):
         for match in regex.finditer(fnobject):
-            print(fnobject)
+            if platform == 'win32'
+                file = dirobject + '\\' + fnobject
+                remove(file)
+            elif platform == 'linux'
+                file = dirobject + '/' + fnobject
+                remove(file)
+            else:
+                raise ValueError('Unknown OS')
 
 if __name__ == '__main__':
     main()
